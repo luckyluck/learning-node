@@ -1,1 +1,4 @@
 notes-node/greetings.txt
+notes-node/notes-data.json
+**/node_modules
+**/playground

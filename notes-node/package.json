@@ -1,0 +1,13 @@
+{
+    "name": "notes-node",
+    "version": "1.0.0",
+    "main": "app.js",
+    "license": "MIT",
+    "author": "Alexandr Ketov",
+    "dependencies": {
+        "lodash": "^4.17.5"
+    },
+    "devDependencies": {
+        "yargs": "^11.0.0"
+    }
+}
