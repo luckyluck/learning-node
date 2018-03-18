@@ -5,6 +5,7 @@
     "license": "MIT",
     "author": "Alexandr Ketov",
     "dependencies": {
+        "axios": "^0.18.0",
         "request": "^2.85.0"
     },
     "devDependencies": {
