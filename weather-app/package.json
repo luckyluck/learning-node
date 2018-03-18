@@ -6,5 +6,8 @@
     "author": "Alexandr Ketov",
     "dependencies": {
         "request": "^2.85.0"
+    },
+    "devDependencies": {
+        "yargs": "^11.0.0"
     }
 }
