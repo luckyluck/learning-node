@@ -15,24 +15,26 @@ const constants = require('../../constants');
  * or you can simply remove &key=${constants.GEO_API_KEY} and use URL with limit on requests per day
  */
 
-const geocodeAddress = (address, callback) => {
+const geocodeAddress = address => {
     const encodedAddress = encodeURIComponent(address);
 
-    request({
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${constants.GEO_API_KEY}`,
-        json: true
-    }, (error, response, body) => {
-        if (error) {
-            callback(error);
-        } else if (body.status === 'ZERO_RESULTS') {
-            callback('Unable to find that address.');
-        } else if (body.status === 'OK') {
-            callback(null, {
-                address: body.results[0].formatted_address,
-                latitude: body.results[0].geometry.location.lat,
-                longitude: body.results[0].geometry.location.lng
-            });
-        }
+    return new Promise((resolve, reject) => {
+        request({
+            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${constants.GEO_API_KEY}`,
+            json: true
+        }, (error, response, body) => {
+            if (error) {
+                reject(error);
+            } else if (body.status === 'ZERO_RESULTS') {
+                reject('Unable to find that address.');
+            } else if (body.status === 'OK') {
+                resolve({
+                    address: body.results[0].formatted_address,
+                    latitude: body.results[0].geometry.location.lat,
+                    longitude: body.results[0].geometry.location.lng
+                });
+            }
+        });
     });
 };
 
