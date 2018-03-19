@@ -1,5 +1,6 @@
-notes-node/greetings.txt
-notes-node/notes-data.json
+/notes-node/greetings.txt
+/notes-node/notes-data.json
 **/node_modules
 **/playground
 /constants.js
+/node-web-server/server.log
