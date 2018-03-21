@@ -1,0 +1,13 @@
+{
+    "name": "node-tests",
+    "version": "1.0.0",
+    "main": "app.js",
+    "author": "Alexandr Ketov",
+    "license": "MIT",
+    "scripts": {
+        "test": "mocha **/*.test.js"
+    },
+    "devDependencies": {
+        "mocha": "^5.0.4"
+    }
+}
