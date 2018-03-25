@@ -116,13 +116,24 @@ describe('DELETE /todos/:id', () => {
             .end(done);
     });
 
-    it('should return todo doc', done => {
+    it('should remove a todo', done => {
         request(app)
             .delete(`/todos/${todos[0]._id.toHexString()}`)
             .expect(200)
             .expect(res => {
                 expect(res.body.todo.text).toBe(todos[0].text);
             })
-            .end(done);
+            .end((error, res) => {
+                if (error) {
+                    done(error);
+                }
+
+                Todo.findById(todos[0]._id.toHexString())
+                    .then(todo => {
+                        expect(todo).toNotExist();
+                        done();
+                    })
+                    .catch(error => done(error));
+            });
     });
 });
