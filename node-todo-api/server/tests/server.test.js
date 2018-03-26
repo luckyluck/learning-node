@@ -11,7 +11,9 @@ const todos = [{
     },
     {
         _id: new ObjectID(),
-        text: 'Deal with tasks on HackerRunk'
+        text: 'Deal with tasks on HackerRunk',
+        completed: true,
+        completedAt: 333
     }
 ];
 
@@ -135,5 +137,37 @@ describe('DELETE /todos/:id', () => {
                     })
                     .catch(error => done(error));
             });
+    });
+});
+
+describe('PATCH /todos/:id', () => {
+    it('should update the todo', done => {
+        const body = { text: 'Text is changed', completed: true };
+
+        request(app)
+            .patch(`/todos/${todos[0]._id.toHexString()}`)
+            .send(body)
+            .expect(200)
+            .expect(res => {
+                expect(res.body.todo.text).toBe(body.text);
+                expect(res.body.todo.completed).toBe(body.completed);
+                expect(res.body.todo.completedAt).toBeA('number');
+            })
+            .end(done);
+    });
+
+    it('should clear completedAt when todo is not completed', done => {
+        const body = { text: 'Text is changed', completed: false };
+
+        request(app)
+            .patch(`/todos/${todos[1]._id.toHexString()}`)
+            .send(body)
+            .expect(200)
+            .expect(res => {
+                expect(res.body.todo.text).toBe(body.text);
+                expect(res.body.todo.completed).toBe(body.completed);
+                expect(res.body.todo.completedAt).toNotExist();
+            })
+            .end(done);
     });
 });
