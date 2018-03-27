@@ -6,8 +6,9 @@
     "license": "MIT",
     "scripts": {
         "start": "node server/server.js",
-        "test": "mocha --timeout 10000 server/**/*.test.js",
-        "test-watch": "mocha **/*.test.js --watch"
+        "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha --timeout 10000 server/**/*.test.js",
+        "test-watch": "mocha **/*.test.js --watch",
+        "test-watch-nodemon": "nodemon --exec 'npm test'"
     },
     "dependencies": {
         "body-parser": "^1.18.2",
