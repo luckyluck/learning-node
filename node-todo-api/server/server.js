@@ -20,7 +20,7 @@ app.post('/todos', (req, res) => {
 
     todo.save().then(doc => {
         res.send(doc);
-    }, error => {
+    }).catch(error => {
         res.status(400).send(error);
     });
 });
@@ -93,7 +93,7 @@ app.patch('/todos/:id', (req, res) => {
             res.send({ todo });
         })
         .catch(error => {
-            res.status(400).send();
+            res.status(400).send(error);
         });
 });
 
@@ -101,11 +101,13 @@ app.post('/users', (req, res) => {
     const body = _.pick(req.body, ['email', 'password']);
     const user = new User(body);
 
-    user.save().then(doc => {
-        res.send(doc);
-    }, error => {
-        res.status(400).send(error);
-    });
+    user.save().then(() => user.generateAuthToken())
+        .then((token) => {
+            res.header('x-auth', token).send(user);
+        })
+        .catch((e) => {
+            res.status(400).send(e);
+        });
 });
 
 app.listen(port, () => {
