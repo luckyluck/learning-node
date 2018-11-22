@@ -8,3 +8,4 @@
 /node-web-server/server.log
 /**/yarn-error.log
 /**/yarn.lock
+/**/.env

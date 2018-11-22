@@ -1,0 +1,27 @@
+{
+    "name": "express-website",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "keywords": [
+        "node",
+        "express"
+    ],
+    "author": "Alexandr Ketov <ketov.alex.v@gmail.com>",
+    "license": "MIT",
+    "repository": "https://github.com/luckyluck/learning-node/express-website",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "dotenv": "^6.1.0",
+        "express": "^4.16.4",
+        "jade": "^1.11.0",
+        "nodemailer": "^4.7.0",
+        "nodemailer-smtp-transport": "^2.7.4"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.6"
+    }
+}
